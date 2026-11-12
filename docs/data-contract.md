@@ -1,0 +1,7 @@
+# 入站遥测与确认接口
+
+输入已由适配器完成MQTT5报文解码，PUBLISH给topic、payload_hex、qos、dup、retained和原始properties。topic alias映射仅限一条连接，重复消息比较应使用解析后的topic和业务属性，连接alias编码变化本身不算payload冲突。Topic Filter按MQTT单层+、末尾多层#及$系统主题规则匹配，示例只订阅plant数据。
+
+服务端Session Present决定是否继续同一持久会话；同会话packet_id在一个未完成交换内唯一，完成后新的PUBLISH开启新交换。重复PUBREL在仍保留的完成记录上回复成功PUBCOMP且不重发正式样本；从未见过或已放弃世代的ID按0x92回复。QoS2只约束一次协议交换的正式入库，不按payload哈希合并不同交换。
+
+确认通道只记录PUBREC/PUBCOMP发送意图，不实际联网；在持久化、正式提交及发确认前后可注入进程退出。旧世代已正式记录始终保留，未完成旧交换可审阅但不得到新会话继续。当前domain只清点事件，不维护交换、alias或数据库。

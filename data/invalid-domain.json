@@ -1,0 +1,68 @@
+{
+  "client_id": "archive-demo",
+  "topic_filters": [
+    "plant/+/pressure"
+  ],
+  "inflight_limit": 4,
+  "disk_quota_bytes": 100000,
+  "topic_alias_maximum": 8,
+  "events": [
+    {
+      "type": "CONNACK",
+      "session_present": false
+    },
+    {
+      "type": "PUBLISH",
+      "packet_id": 0,
+      "qos": 2,
+      "dup": false,
+      "topic": "plant/A/pressure",
+      "payload_hex": "31322e35",
+      "retained": true,
+      "properties": {
+        "topic_alias": 1
+      }
+    },
+    {
+      "type": "PUBLISH",
+      "packet_id": 7,
+      "qos": 2,
+      "dup": true,
+      "topic": "",
+      "payload_hex": "31322e35",
+      "retained": true,
+      "properties": {
+        "topic_alias": 1
+      }
+    },
+    {
+      "type": "PUBREL",
+      "packet_id": 7
+    },
+    {
+      "type": "PUBREL",
+      "packet_id": 7
+    },
+    {
+      "type": "DISCONNECT"
+    },
+    {
+      "type": "CONNACK",
+      "session_present": true
+    },
+    {
+      "type": "PUBLISH",
+      "packet_id": 7,
+      "qos": 2,
+      "dup": false,
+      "topic": "plant/A/pressure",
+      "payload_hex": "31332e30",
+      "retained": false,
+      "properties": {}
+    },
+    {
+      "type": "PUBREL",
+      "packet_id": 7
+    }
+  ]
+}
