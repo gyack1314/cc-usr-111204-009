@@ -11,3 +11,6 @@ __pycache__/
 *.py[cod]
 .DS_Store
 out/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
